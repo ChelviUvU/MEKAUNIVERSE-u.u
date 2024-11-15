@@ -28,6 +28,7 @@ public class PlayerLives : MonoBehaviour
             Destroy(collision.collider.gameObject);
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             lives -= 1;
+
             for (int i = 0; i < livesUI.Length; i++)
             {
                 if (i < lives)
@@ -43,6 +44,7 @@ public class PlayerLives : MonoBehaviour
 
             if (lives <= 0)
             {
+                
                 Destroy(gameObject);
             }
         }

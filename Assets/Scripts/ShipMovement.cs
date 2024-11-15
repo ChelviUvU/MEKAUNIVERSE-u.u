@@ -24,5 +24,13 @@ public class shipsMovements : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
             moveSpeed *= -1;
         }
+        if(collision.gameObject.tag == "Boundary2")
+        {
+
+        }
+        if(collision.gameObject.tag == "boundaryDead")
+        {
+            Destroy(gameObject);
+        }
     }
 }

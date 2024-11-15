@@ -9,7 +9,7 @@ public class EnemyProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,7 +24,6 @@ public class EnemyProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         if(collision.gameObject.tag == "Barrera")
         {
             Destroy(gameObject);

@@ -18,11 +18,18 @@ public class PauseMenu : MonoBehaviour
     {
         if(Input.GetButtonDown("Pause"))
         {
+            
             if (isPaused)
+            {
                 ResumeGame();
+            }
+                
                
             else
+            {   
                 PauseGame();
+            }
+               
                 
             
         }

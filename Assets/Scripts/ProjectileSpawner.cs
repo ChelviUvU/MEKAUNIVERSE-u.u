@@ -21,6 +21,7 @@ public class ProjectileSpawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         if (spawnTimer <= 0)
         {
+            GetComponent<AudioSource>().Play();
             Instantiate(enemyProjectile, transform.position, Quaternion.identity);
             spawnTimer = Random.Range(spawnMin, spawnMax);
         }

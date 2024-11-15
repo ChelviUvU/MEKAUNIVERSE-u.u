@@ -16,6 +16,7 @@ public class projectileShoot : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            GetComponent<AudioSource>().Play();
             Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         }
     }
