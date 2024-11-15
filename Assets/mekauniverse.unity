@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -201,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 8432187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0476, y: -0.1788, z: 0}
+  m_LocalPosition: {x: -0.057, y: -0.189, z: 0}
   m_LocalScale: {x: 21.92158, y: 21.898577, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -215,6 +214,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1209314504}
     m_Modifications:
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.24
@@ -279,6 +286,14 @@ PrefabInstance:
     - target: {fileID: 951931542907896419, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
       propertyPath: m_Name
       value: SHIP #2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938795968690328632, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938795968690328632, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8161400324676147915, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
       propertyPath: m_Sprite
@@ -477,10 +492,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &142547885
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,10 +596,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &177146916
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,111 +746,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
   m_PrefabInstance: {fileID: 1802261801}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &274764717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 274764718}
-  - component: {fileID: 274764719}
-  - component: {fileID: 274764720}
-  m_Layer: 0
-  m_Name: Barrera
-  m_TagString: Barrera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &274764718
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274764717}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.011, y: 0.467, z: -0.1387365}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 280259913}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &274764719
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274764717}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.017123818, y: -0.118154526}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.3013793, y: 0.13353443}
-  m_EdgeRadius: 0
---- !u!50 &274764720
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274764717}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &280259910
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,8 +846,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -4.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 274764718}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &280259914
@@ -1051,6 +960,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1553685063}
     m_Modifications:
+    - target: {fileID: 4506624345387517784, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506624345387517784, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.24
@@ -1610,10 +1535,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1001 &440162140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1628,11 +1553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMax
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMin
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1832,10 +1757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1001 &509359159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1850,11 +1775,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMax
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMin
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1931,10 +1856,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,11 +2094,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMax
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMin
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2252,11 +2177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMax
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMin
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2468,6 +2393,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 47990012}
     m_Modifications:
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.24
@@ -2543,10 +2476,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!4 &825215529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8191482471537302761, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
@@ -2574,10 +2507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!4 &841944787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
@@ -3294,7 +3227,7 @@ Transform:
   m_GameObject: {fileID: 992505253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.12, y: 63.1, z: 0.04002733}
+  m_LocalPosition: {x: 5.13, y: 37.98, z: 0.04002733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3386,6 +3319,14 @@ PrefabInstance:
     - target: {fileID: 951931542907896419, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
       propertyPath: m_Name
       value: SHIP #2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938795968690328632, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938795968690328632, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 8161400324676147915, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
       propertyPath: m_Sprite
@@ -3788,6 +3729,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1363792919}
     m_Modifications:
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.24
@@ -3855,11 +3804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMax
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMin
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4135,6 +4084,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 460323173}
     m_Modifications:
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.24
@@ -4397,10 +4354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &1567313768
 GameObject:
   m_ObjectHideFlags: 0
@@ -4823,13 +4780,21 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4506624345387517784, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506624345387517784, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.28
+      objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMax
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: spawnMin
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5077,10 +5042,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &1861731614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5137,6 +5102,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 883228029}
     m_Modifications:
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMax
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5644644846575626531, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
+      propertyPath: spawnMin
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5722275400513739725, guid: 1d119614b8a8dd74585b7c0cf278e4b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.24
@@ -5212,10 +5185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &1986865740 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 951931542907896419, guid: 4e58dbcba7747b1489cb586760f0b886, type: 3}
@@ -5238,10 +5211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &2028369050
 GameObject:
   m_ObjectHideFlags: 0
@@ -5407,10 +5380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e18731d06e67d54c85a813c46623fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyProjectile: {fileID: 0}
+  enemyProjectile: {fileID: 8018942616845831012, guid: e07bc6124fe390c42b9786ec1a2a4111, type: 3}
   spawnTimer: 0
-  spawnMax: 7
-  spawnMin: 2
+  spawnMax: 8
+  spawnMin: 1
 --- !u!1 &2140091656
 GameObject:
   m_ObjectHideFlags: 0
