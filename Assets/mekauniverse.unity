@@ -1563,6 +1563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 431385923}
+  - {fileID: 862526371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &280259914
@@ -1776,7 +1777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f76c585a447227418b786f4962972cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portName: COM3
+  portName: COM5
   baudRate: 9600
   movementSpeed: 5
 --- !u!1001 &286761502
@@ -4295,6 +4296,55 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &862526370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 862526371}
+  - component: {fileID: 862526372}
+  m_Layer: 0
+  m_Name: firePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &862526371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862526370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 280259913}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &862526372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862526370}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cada4a25d6eacc84aba07e5b0ee85f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM5
+  baudRate: 9600
+  projectilePrefab: {fileID: 4731204248397627284, guid: 73ddfef031f3bdc41b9c3800889525eb, type: 3}
+  firePoint: {fileID: 862526371}
+  projectileSpeed: 7
 --- !u!1 &870625304
 GameObject:
   m_ObjectHideFlags: 0
