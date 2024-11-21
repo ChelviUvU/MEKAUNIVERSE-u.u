@@ -28,5 +28,9 @@ public class EnemyProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "boundaryDead")
+        {
+            Destroy(gameObject);
+        }
     }
 }
