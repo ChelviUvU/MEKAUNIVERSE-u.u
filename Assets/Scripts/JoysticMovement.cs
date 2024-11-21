@@ -1,82 +1,82 @@
-using System.IO.Ports;
+using System;
+using System.IO.Ports; // Necesario para comunicación serial
 using UnityEngine;
 
-public class ArduinoInput : MonoBehaviour
+public class JoystickController : MonoBehaviour
 {
-    // Puerto serial para la comunicación con el Arduino
-    SerialPort serialPort = new SerialPort("COM6", 9600); // Ajusta el puerto COM según sea necesario
+    public string portName = "COM3"; // Cambia al puerto correspondiente
+    public int baudRate = 9600; // Debe coincidir con el del Arduino
+    private SerialPort serialPort;
 
-    // Variables para controlar el movimiento de la nave
-    public float moveSpeed = 5f;  // Velocidad de movimiento de la nave
-    private Vector3 moveDirection;  // Dirección de movimiento
+    private float joystick1Value = 0;
+    private float joystick2Value = 0;
+
+    public float movementSpeed = 5.0f; // Velocidad de movimiento de la nave
 
     void Start()
     {
-        // Abre el puerto serial
         try
         {
+            // Abre el puerto serial
+            serialPort = new SerialPort(portName, baudRate);
             serialPort.Open();
-            Debug.Log("Conexión al Arduino establecida");
+            serialPort.ReadTimeout = 100; // Tiempo de espera para la lectura
+            Debug.Log("Puerto Serial abierto correctamente");
         }
-        catch (System.Exception ex)
+        catch (Exception e)
         {
-            Debug.LogError("No se pudo abrir el puerto serial: " + ex.Message);
+            Debug.LogError($"Error al abrir el puerto serial: {e.Message}");
         }
     }
 
     void Update()
     {
-        // Verifica si hay datos disponibles en el puerto
-        if (serialPort.IsOpen && serialPort.BytesToRead > 0)
+        // Leer datos del Arduino
+        if (serialPort != null && serialPort.IsOpen)
         {
             try
             {
-                // Lee la línea completa desde el puerto serial
-                string data = serialPort.ReadLine();
-                Debug.Log("Datos recibidos: " + data);  // Verificar los datos recibidos
+                string data = serialPort.ReadLine(); // Leer línea del puerto serial
+                Debug.Log($"Datos recibidos: {data}"); // Muestra los datos en consola
 
-                // Divide los datos en un array usando la coma como separador
-                string[] values = data.Split(',');
-
-                if (values.Length >= 1) // Asegúrate de que haya al menos 1 valor (el comando de movimiento)
+                string[] values = data.Split(','); // Divide los datos por comas
+                if (values.Length == 2)
                 {
-                    // Recibe el comando para mover la nave (deberías tener un valor como "derecha", "izquierda" o "no mover")
-                    string movementCommand = values[0];
-                    Debug.Log("Comando de movimiento: " + movementCommand);  // Verificar el comando recibido
+                    // Convierte los valores de texto a flotantes y mapea de 0-1023 a -1 a 1
+                    joystick1Value = Map(float.Parse(values[0]), 0, 1023, -1f, 1f);
+                    joystick2Value = Map(float.Parse(values[1]), 0, 1023, -1f, 1f);
 
-                    // Mover la nave dependiendo del comando recibido
-                    if (movementCommand == "derecha")
-                    {
-                        moveDirection = Vector3.right;  // Dirección hacia la derecha
-                    }
-                    else if (movementCommand == "izquierda")
-                    {
-                        moveDirection = Vector3.left;   // Dirección hacia la izquierda
-                    }
-                    else
-                    {
-                        moveDirection = Vector3.zero;   // No moverse
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("Datos no válidos recibidos: " + data);
+                    Debug.Log($"Joystick1: {joystick1Value}, Joystick2: {joystick2Value}");
                 }
             }
-            catch (System.Exception ex)
+            catch (TimeoutException)
             {
-                Debug.LogError("Error al procesar los datos: " + ex.Message);
+                Debug.LogWarning("Tiempo de espera excedido al leer el puerto serial.");
             }
         }
 
-        // Mover la nave basándonos en la dirección calculada
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        // Mover la nave
+        if (joystick1Value > 0.5f && joystick2Value > 0.5f) // Mover a la derecha
+        {
+            Debug.Log("Moviendo a la derecha");
+            transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+        }
+        else if (joystick1Value < -0.5f && joystick2Value < -0.5f) // Mover a la izquierda
+        {
+            Debug.Log("Moviendo a la izquierda");
+            transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+        }
+    }
+
+    private float Map(float value, float inMin, float inMax, float outMin, float outMax)
+    {
+        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
     }
 
     void OnDestroy()
     {
         // Cierra el puerto serial al salir
-        if (serialPort.IsOpen)
+        if (serialPort != null && serialPort.IsOpen)
         {
             serialPort.Close();
         }
