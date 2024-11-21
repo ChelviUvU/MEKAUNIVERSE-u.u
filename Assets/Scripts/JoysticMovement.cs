@@ -1,27 +1,27 @@
 using System;
-using System.IO.Ports; // Necesario para comunicación serial
+using System.IO.Ports; // Necesario para la comunicación serial
 using UnityEngine;
 
 public class JoystickController : MonoBehaviour
 {
-    public string portName = "COM3"; // Cambia al puerto correspondiente
-    public int baudRate = 9600; // Debe coincidir con el del Arduino
+    public string portName = "COM5"; // Puerto del Arduino
+    public int baudRate = 9600; // Velocidad de comunicación serial
     private SerialPort serialPort;
 
-    private float joystick1Value = 0;
-    private float joystick2Value = 0;
+    private int joystick1Value = 518; // Valor inicial del joystick 1 (reposo)
+    private int joystick2Value = 515; // Valor inicial del joystick 2 (reposo)
 
-    public float movementSpeed = 5.0f; // Velocidad de movimiento de la nave
+    public float movementSpeed = 5.0f; // Velocidad de la nave
+    private int threshold = 50; // Margen de tolerancia para evitar ruido (ajusta según pruebas)
 
     void Start()
     {
         try
         {
-            // Abre el puerto serial
             serialPort = new SerialPort(portName, baudRate);
             serialPort.Open();
-            serialPort.ReadTimeout = 100; // Tiempo de espera para la lectura
-            Debug.Log("Puerto Serial abierto correctamente");
+            serialPort.ReadTimeout = 10;
+            Debug.Log("Puerto serial abierto correctamente.");
         }
         catch (Exception e)
         {
@@ -31,46 +31,50 @@ public class JoystickController : MonoBehaviour
 
     void Update()
     {
-        // Leer datos del Arduino
+        // Leer datos del puerto serial
         if (serialPort != null && serialPort.IsOpen)
         {
             try
             {
-                string data = serialPort.ReadLine(); // Leer línea del puerto serial
-                Debug.Log($"Datos recibidos: {data}"); // Muestra los datos en consola
-
-                string[] values = data.Split(','); // Divide los datos por comas
-                if (values.Length == 2)
+                if (serialPort.BytesToRead > 0)
                 {
-                    // Convierte los valores de texto a flotantes y mapea de 0-1023 a -1 a 1
-                    joystick1Value = Map(float.Parse(values[0]), 0, 1023, -1f, 1f);
-                    joystick2Value = Map(float.Parse(values[1]), 0, 1023, -1f, 1f);
+                    string data = serialPort.ReadLine();
+                    string[] values = data.Split(',');
 
-                    Debug.Log($"Joystick1: {joystick1Value}, Joystick2: {joystick2Value}");
+                    if (values.Length == 2)
+                    {
+                        // Leer valores crudos del Arduino
+                        joystick1Value = int.Parse(values[0]);
+                        joystick2Value = int.Parse(values[1]);
+
+                        Debug.Log($"Joystick1: {joystick1Value}, Joystick2: {joystick2Value}");
+                    }
                 }
             }
-            catch (TimeoutException)
+            catch (Exception ex)
             {
-                Debug.LogWarning("Tiempo de espera excedido al leer el puerto serial.");
+                Debug.LogWarning($"Error al leer datos: {ex.Message}");
             }
         }
 
-        // Mover la nave
-        if (joystick1Value > 0.5f && joystick2Value > 0.5f) // Mover a la derecha
-        {
-            Debug.Log("Moviendo a la derecha");
-            transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
-        }
-        else if (joystick1Value < -0.5f && joystick2Value < -0.5f) // Mover a la izquierda
-        {
-            Debug.Log("Moviendo a la izquierda");
-            transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
-        }
-    }
+        // Lógica de movimiento de la nave
+        bool moveLeft = joystick1Value < threshold && joystick2Value < threshold;
+        bool moveRight = joystick1Value > 1023 - threshold && joystick2Value > 1023 - threshold;
 
-    private float Map(float value, float inMin, float inMax, float outMin, float outMax)
-    {
-        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+        if (moveLeft) // Ambos joysticks hacia la izquierda
+        {
+            transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+            Debug.Log("Moviendo a la izquierda");
+        }
+        else if (moveRight) // Ambos joysticks hacia la derecha
+        {
+            transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+            Debug.Log("Moviendo a la derecha");
+        }
+        else
+        {
+            Debug.Log("Sin movimiento");
+        }
     }
 
     void OnDestroy()
