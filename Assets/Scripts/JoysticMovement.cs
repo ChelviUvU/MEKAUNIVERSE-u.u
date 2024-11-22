@@ -106,6 +106,12 @@ public class ArduinoController : MonoBehaviour
             {
                 Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                 lastFireTime = Time.time; // Actualizar el tiempo del último disparo
+
+                // Enviar comando al Arduino para activar el LED
+                if (serialPort != null && serialPort.IsOpen)
+                {
+                    serialPort.Write("F"); // Comando para destello del LED
+                }
             }
         }
     }
