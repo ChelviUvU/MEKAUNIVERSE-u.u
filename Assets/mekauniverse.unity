@@ -1779,6 +1779,8 @@ MonoBehaviour:
   portName: COM3
   baudRate: 9600
   projectilePrefab: {fileID: 4731204248397627284, guid: 73ddfef031f3bdc41b9c3800889525eb, type: 3}
+  barrierObject: {fileID: 431385918}
+  cooldownText: {fileID: 223529651}
   movementSpeed: 5
   fireDelay: 0.5
 --- !u!1001 &286761502

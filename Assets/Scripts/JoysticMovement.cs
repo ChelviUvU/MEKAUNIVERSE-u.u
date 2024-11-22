@@ -1,6 +1,8 @@
 using System;
 using System.IO.Ports;
 using UnityEngine;
+using TMPro;
+using System.Collections;
 
 public class ArduinoController : MonoBehaviour
 {
@@ -9,17 +11,23 @@ public class ArduinoController : MonoBehaviour
     private SerialPort serialPort;
 
     public GameObject projectilePrefab; // Prefab del proyectil
+    public GameObject barrierObject; // Referencia al objeto de la barrera
+    public TextMeshProUGUI cooldownText; // Texto del cooldown de la barrera
     public float movementSpeed = 5.0f; // Velocidad de movimiento
 
-    private int joystick1Value = 518; // Valor inicial del joystick 1 (reposo)
-    private int joystick2Value = 515; // Valor inicial del joystick 2 (reposo)
-    private int fireValue1 = 1; // Estado del botón de disparo
-    private int fireValue2 = 1; // Estado del botón de disparo
+    private int joystick1Value = 518; // Valor inicial del joystick izquierdo
+    private int joystick2Value = 515; // Valor inicial del joystick derecho
+    private int fireValue1 = 1; // Estado del botón de disparo 1
+    private int fireValue2 = 1; // Estado del botón de disparo 2
 
     private int threshold = 50; // Margen de tolerancia para evitar ruido
 
     public float fireDelay = 0.5f; // Tiempo mínimo entre disparos (en segundos)
     private float lastFireTime = 0; // Momento del último disparo
+
+    private float cooldownTime = 10f; // Tiempo de cooldown de la barrera
+    private float currentCooldown = 0f; // Tiempo restante de cooldown
+    private bool canActivateBarrier = true; // Controla si la barrera puede activarse
 
     void Start()
     {
@@ -34,6 +42,10 @@ public class ArduinoController : MonoBehaviour
         {
             Debug.LogError($"Error al abrir el puerto serial: {e.Message}");
         }
+
+        // Inicializar la barrera
+        barrierObject.SetActive(false);
+        UpdateCooldownText();
     }
 
     void Update()
@@ -41,6 +53,7 @@ public class ArduinoController : MonoBehaviour
         ReadArduinoData();
         HandleMovement();
         HandleShooting();
+        HandleBarrier();
     }
 
     void ReadArduinoData()
@@ -87,18 +100,56 @@ public class ArduinoController : MonoBehaviour
 
     void HandleShooting()
     {
-        if(Time.time - lastFireTime > fireDelay)
+        if (Time.time - lastFireTime > fireDelay)
         {
-            if (fireValue1 == 0 && Time.time - lastFireTime > fireDelay) // Verificar el delay
+            if (fireValue1 == 0 || fireValue2 == 0) // Disparo con cualquier botón
             {
                 Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                 lastFireTime = Time.time; // Actualizar el tiempo del último disparo
             }
-            if (fireValue2 == 0 && Time.time - lastFireTime > fireDelay) // Verificar el delay
-            {
-                Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-                lastFireTime = Time.time; // Actualizar el tiempo del último disparo
-            }
+        }
+    }
+
+    void HandleBarrier()
+    {
+        // Activar la barrera si ambos joysticks se mueven hacia adentro
+        bool activateBarrier = joystick1Value > 1023 - threshold && joystick2Value < threshold;
+
+        if (activateBarrier && canActivateBarrier)
+        {
+            StartCoroutine(ActivateBarrier());
+        }
+    }
+
+    IEnumerator ActivateBarrier()
+    {
+        canActivateBarrier = false; // Deshabilitar activación durante el cooldown
+        barrierObject.SetActive(true); // Activar la barrera
+        UpdateCooldownText("Activada"); // Mostrar que la barrera está activa
+        yield return new WaitForSeconds(5f); // Esperar 5 segundos con la barrera activa
+
+        barrierObject.SetActive(false); // Desactivar la barrera
+        StartCoroutine(StartCooldown()); // Iniciar el cooldown
+    }
+
+    IEnumerator StartCooldown()
+    {
+        currentCooldown = cooldownTime; // Establecer el cooldown inicial
+        while (currentCooldown > 0)
+        {
+            UpdateCooldownText($"{currentCooldown:F1} seg"); // Actualizar el texto con tiempo restante
+            yield return new WaitForSeconds(0.1f); // Actualizar cada 0.1 segundos
+            currentCooldown -= 0.1f;
+        }
+        canActivateBarrier = true; // Permitir activar de nuevo
+        UpdateCooldownText("Lista"); // Mostrar que el cooldown terminó
+    }
+
+    void UpdateCooldownText(string text = "")
+    {
+        if (cooldownText != null)
+        {
+            cooldownText.text = string.IsNullOrEmpty(text) ? "Lista" : $"Barrera: {text}";
         }
     }
 
